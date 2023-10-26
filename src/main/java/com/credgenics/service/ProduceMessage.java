@@ -14,7 +14,7 @@ public class ProduceMessage {
     @Bean
     public void sendMessage() {
         System.out.println("PRODUCE");
-        kafkaTemplate.send("bht_test_1","data_23_oct_3");
+//        kafkaTemplate.send("bht_test_1","data_23_oct_3");
     }
 
 }

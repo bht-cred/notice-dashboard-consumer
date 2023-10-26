@@ -1,10 +1,13 @@
 package com.credgenics.config;
 
+import com.credgenics.kafkaproject.KafkaProjectApplication;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.protocol.types.Field;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +25,8 @@ import java.util.HashMap;
 @Configuration
 public class KafkaConsumerConfig {
 
+    Logger logger = LoggerFactory.getLogger(KafkaProjectApplication.class);
+
     @Value("${spring.kafka.bootstrap.servers}")
     private String bootstrapServer;
 
@@ -32,6 +37,8 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
+        logger.info(">>>logger setup successful!");
+        logger.debug(">>>logger setup successful!");
         return props;
     }
 
